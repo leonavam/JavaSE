@@ -36,8 +36,7 @@ public class Principal {
 				e.printStackTrace(System.out);
 				connection.rollback();
 			}catch (SQLException e2) {
-				System.out.println("Error con rollback");
-				e2.printStackTrace();
+				e2.printStackTrace(System.out);
 			}
 		}
 		
