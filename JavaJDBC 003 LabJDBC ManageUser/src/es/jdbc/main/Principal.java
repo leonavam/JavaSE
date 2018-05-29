@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import es.jdbc.beans.User;
 import es.jdbc.datos.UserJDBC;
 
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -16,16 +17,16 @@ public class Principal {
 		//userJDBC.update(1, "erik", "1234");
 		//userJDBC.delete(2);
 		
-		userJDBC.select();
+		Hashtable<String, User> users =  userJDBC.select();
 		
-		Enumeration<User> enumeration = userJDBC.select().elements();
-		
+		Enumeration<User> enumeration = users.elements();
+		Object val;
 		while (enumeration.hasMoreElements()) {
-			System.out.println(enumeration.nextElement());
+			val = enumeration.nextElement();
+			System.out.println(val);
 		}
 		
 		
-
 
 	}
 

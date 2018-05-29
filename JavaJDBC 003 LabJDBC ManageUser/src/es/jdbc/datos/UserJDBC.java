@@ -82,9 +82,9 @@ public class UserJDBC {
 		 return rows;
 	 }
 	 
-	 public Hashtable<Integer, User> select() {
+	 public Hashtable<String, User> select() {
 		 
-		 Hashtable<Integer, User> users = new Hashtable<>();
+		 Hashtable<String, User> users = new Hashtable<>();
 		 
 		 try {
 			 connection = Conexion.getconnection();
@@ -97,7 +97,7 @@ public class UserJDBC {
 				 String pass = resultSet.getString(3);
 				 int index = 0;
 				 
-				 users.put(index++, new User(id, user, pass));
+				 users.put(user, new User(id, user, pass));
 			 }
 		} catch (Exception e) {
 			e.printStackTrace();
