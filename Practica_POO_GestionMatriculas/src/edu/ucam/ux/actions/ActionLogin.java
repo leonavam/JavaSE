@@ -26,9 +26,10 @@ public class ActionLogin implements ActionListener {
 	private WindowLogin frame;
 	private PanelRegistro panel;
 	private User user;
-	private WindowEmpty window, windowSecond;
+	private WindowEmpty window;
 	private InterfaceAlumno alumno;
 	private InterfaceAdministrativo administrativo;
+	private static Alumno alumnoIdentify;
 
 	
 	public ActionLogin(WindowLogin frame) {
@@ -49,6 +50,7 @@ public class ActionLogin implements ActionListener {
 			user = Tablas.getUsuarios().get(txtDni);
 			
 			if ( user instanceof Alumno) {
+				setAlumnoIdentify((Alumno) user);
 				window = new WindowEmpty(new PanelMatricula());
 				window.makeWindow();
 			}else if (user instanceof Administrativo) {
@@ -116,6 +118,14 @@ public class ActionLogin implements ActionListener {
 
 	private void setPanel(PanelRegistro panel) {
 		this.panel = panel;
+	}
+
+	public static Alumno getAlumnoIdentify() {
+		return alumnoIdentify;
+	}
+
+	public static void setAlumnoIdentify(Alumno alumnoIdentify) {
+		ActionLogin.alumnoIdentify = alumnoIdentify;
 	}
 	
 	

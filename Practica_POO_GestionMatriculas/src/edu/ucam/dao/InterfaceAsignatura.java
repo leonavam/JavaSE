@@ -1,5 +1,6 @@
 package edu.ucam.dao;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import edu.ucam.beans.Asignatura;
@@ -15,5 +16,7 @@ public interface InterfaceAsignatura {
 	public void deleteAsignatura(String str);
 	public Asignatura getAsignatura(String str);
 	public Hashtable<String,Asignatura> getAllAsignaturas();
+	
+	public ArrayList<Asignatura> getOnlyAsignaturas();
 	
 }

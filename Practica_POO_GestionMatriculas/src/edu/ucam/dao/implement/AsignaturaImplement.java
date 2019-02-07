@@ -1,5 +1,6 @@
 package edu.ucam.dao.implement;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -59,4 +60,15 @@ public class AsignaturaImplement implements InterfaceAsignatura {
 		return Tablas.getAsignaturas();
 	}
 
+	public ArrayList<Asignatura> getOnlyAsignaturas(){
+		ArrayList<Asignatura> asignaturas = new ArrayList<>();
+		
+		Enumeration<Asignatura> e = Tablas.getAsignaturas().elements();
+		while (e.hasMoreElements()) {
+			Asignatura asignatura = (Asignatura) e.nextElement();
+			asignaturas.add(asignatura);
+		}
+		
+		return asignaturas;
+	}
 }
