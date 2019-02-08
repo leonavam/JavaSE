@@ -1,14 +1,13 @@
 package edu.ucam.beans;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.ArrayList;
 
 public class Expediente {
 
 	private static int numExpedientes;
 	private String id;
 	private Alumno alumno;
-	private Hashtable<String, Asignatura> asignaturas;
+	private ArrayList<Asignatura> asignaturas;
 	
 	private Expediente() {
 		Expediente.numExpedientes++;
@@ -18,17 +17,19 @@ public class Expediente {
 		this();
 		this.alumno = alumno;
 		this.id = alumno.getDni();
+		this.asignaturas = new ArrayList<>();
+		System.out.println("Expediente " + id + " creado");
 	}
 
 	public Alumno getAlumno() {
 		return alumno;
 	}
 
-	public Hashtable<String, Asignatura> getAsignaturas() {
+	public ArrayList<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(Hashtable<String, Asignatura> asignaturas) {
+	public void setAsignaturas(ArrayList<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
 
@@ -40,12 +41,10 @@ public class Expediente {
 		return id;
 	}
 
-	public double getNumCreditosMatriculadas() {
+	public double getNumCreditosMatriculados() {
 		double creditos = 0;
-		Enumeration<Asignatura> e = getAsignaturas().elements();
-		Asignatura asignatura;
-		while (e.hasMoreElements()) {
-			asignatura = e.nextElement();
+		
+		for (Asignatura asignatura : asignaturas) {
 			creditos += asignatura.getCreditos();
 		}
 		

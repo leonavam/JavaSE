@@ -13,6 +13,7 @@ public class Administrativo extends User {
 		this.id = numAdministrativos;
 		this.password = password;
 		
+		System.out.println("Administrativo " + dni + " creado!");
 	}
 
 	public String getPassword() {

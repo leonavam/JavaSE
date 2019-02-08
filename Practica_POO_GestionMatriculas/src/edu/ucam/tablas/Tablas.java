@@ -8,6 +8,12 @@ import edu.ucam.beans.Alumno;
 import edu.ucam.beans.Asignatura;
 import edu.ucam.beans.Expediente;
 import edu.ucam.beans.User;
+import edu.ucam.dao.InterfaceAdministrativo;
+import edu.ucam.dao.InterfaceAlumno;
+import edu.ucam.dao.InterfaceAsignatura;
+import edu.ucam.dao.implement.AdministrativoImplement;
+import edu.ucam.dao.implement.AlumnoImplement;
+import edu.ucam.dao.implement.AsignaturaImplement;
 import edu.ucam.enums.CursoEscolar;
 import edu.ucam.enums.Semestre;
 import edu.ucam.enums.TipoAsignatura;
@@ -19,6 +25,10 @@ public class Tablas {
 	private static Hashtable<String, Asignatura> asignaturas;
 	private static Hashtable<String, Expediente> expedientes;
 
+	private static InterfaceAsignatura asignatura;
+	private static InterfaceAdministrativo administrativo;
+	private static InterfaceAlumno alumno;
+	
 	public Tablas() {
 
 	}
@@ -35,8 +45,6 @@ public class Tablas {
 	public static Hashtable<String, Alumno> getAlumnos() {
 		if (alumnos == null) {
 			alumnos = new Hashtable<>();
-			
-			loadDataAlumnos();
 		}
 		return alumnos;
 	}
@@ -51,25 +59,29 @@ public class Tablas {
 	}
 
 	public static Hashtable<String, Expediente> getExpedientes() {
+		if (expedientes == null ) {
+			expedientes = new Hashtable<>();
+		}
 		return expedientes;
 	}
 
 	private static void loadDataUsers() {
-		getUsuarios().put("000", new Alumno("000", "erik", "Navarrete", "Los angeles 10", 652708716) );
-		getUsuarios().put("111", new Alumno("111", "leonel", "Monetenegro", "La ñora 10", 000111223) );
-		getUsuarios().put("ADMIN", new Administrativo("admin", "adminName", "adminSurname", "adminDir", 112233445, "admind") );
-		getUsuarios().put("Y3235025C", new Alumno("Y3235025C", "miNombre", "miApellido", "miDireccion", 000111223) );
+		
+		alumno = new AlumnoImplement();
+		alumno.addAlumno(new Alumno("000", "erik", "Navarrete", "Los angeles 10", 652708716));
+		alumno.addAlumno(new Alumno("111", "leonel", "Monetenegro", "La ñora 10", 000111223));
+		alumno.addAlumno(new Alumno("Y3235025C", "miNombre", "miApellido", "miDireccion", 000111223));
+		
+		administrativo = new AdministrativoImplement();
+		administrativo.addAdministrativo(new Administrativo("admin", "adminName", "adminSurname", "adminDir", 112233445, "admind"));
 		
 	}
 
-	private static void loadDataAlumnos() {
-		getAlumnos().put("000", new Alumno("000", "erik", "Navarrete", "Los angeles 10", 652708716) );
-		getAlumnos().put("111", new Alumno("111", "leonel", "Monetenegro", "La ñora 10", 000111223) );
-	}
-
 	private static void loadDataAsignaturas() {
-		getAsignaturas().put("PROGRAMACION I", new Asignatura("programacion i", TipoAsignatura.OBLIGATORIA, 3, CursoEscolar.PRIMERO, Semestre.PRIMERO));
-		getAsignaturas().put("DAD II", new Asignatura("dad ii", TipoAsignatura.OBLIGATORIA, 4.5, CursoEscolar.TERCERO, Semestre.SEGUNDO));
+		asignatura = new AsignaturaImplement();
+		
+		asignatura.addAsignatura(new Asignatura("programacion i", TipoAsignatura.OBLIGATORIA, 3, CursoEscolar.PRIMERO, Semestre.PRIMERO));
+		asignatura.addAsignatura(new Asignatura("dad ii", TipoAsignatura.OBLIGATORIA, 4.5, CursoEscolar.TERCERO, Semestre.SEGUNDO));
 	}
 
 	public static double getCreditosTotales() {

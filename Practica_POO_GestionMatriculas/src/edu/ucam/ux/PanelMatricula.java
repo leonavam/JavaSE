@@ -1,7 +1,9 @@
 package edu.ucam.ux;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -9,7 +11,9 @@ import javax.swing.ListSelectionModel;
 
 import edu.ucam.beans.Asignatura;
 import edu.ucam.dao.InterfaceAsignatura;
+import edu.ucam.dao.InterfaceExpediente;
 import edu.ucam.dao.implement.AsignaturaImplement;
+import edu.ucam.dao.implement.ExpedienteImplement;
 import edu.ucam.ux.actions.ActionLogin;
 
 public class PanelMatricula extends JPanel{
@@ -24,14 +28,14 @@ public class PanelMatricula extends JPanel{
 	
 	private JScrollPane jscrollDisponibles, jscrollMatriculadas;
 	private JButton btnAddMatricula;
-	private JPanel panelMain;
+	private JPanel panelMain, panelDisponibles, panelMatriculadas;
 	
 	public PanelMatricula() {
-		setSize(500, 300);
+		setSize(600, 300);
 		
-		add(getJscrollDisponibles());
+		add(getPanelDisponibles());
 		add(getBtnAddMatricula());
-		add(getJscrollMatriculadas());
+		add(getPanelMatriculadas());
 		System.out.println("El usuario logeado es: " + ActionLogin.getAlumnoIdentify().getDni());
 	}
 	
@@ -39,7 +43,7 @@ public class PanelMatricula extends JPanel{
 		if (panelMain == null) {
 			panelMain = new JPanel();
 			
-			panelMain.add(getlistAsignaturasDisponibles());
+			panelMain.add(getPanelDisponibles());
 			panelMain.add(getBtnAddMatricula());
 			panelMain.add(getlistAsignaturasMatriculadas());
 		}
@@ -60,6 +64,7 @@ public class PanelMatricula extends JPanel{
 		if (listAsignaturasMatriculadas == null) {
 			listAsignaturasMatriculadas = new JList<>();
 			listAsignaturasDisponibles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			listAsignaturasDisponibles.setVisibleRowCount(8);
 		}
 		return listAsignaturasMatriculadas;
 	}
@@ -101,10 +106,37 @@ public class PanelMatricula extends JPanel{
 	public DefaultListModel<String> getListMMatriculadas() {
 		if (listMMatriculadas == null) {
 			listMMatriculadas = new DefaultListModel<>();
-			
-			
+		}
+		InterfaceExpediente exp = new ExpedienteImplement();
+
+		for (Asignatura a : exp.getAsignaturasMatriculadas(ActionLogin.getAlumnoIdentify())) {
+			listMMatriculadas.addElement(a.getName());
 		}
 		return listMMatriculadas;
+	}
+
+	public JPanel getPanelDisponibles() {
+		if (panelDisponibles == null) {
+			panelDisponibles = new JPanel();
+			panelDisponibles.setLayout(new BoxLayout(panelDisponibles, BoxLayout.Y_AXIS));
+			
+			panelDisponibles.add(new JLabel("Asignaturas Disponibles"));
+			panelDisponibles.add(getJscrollDisponibles());
+		}
+		
+		return panelDisponibles;
+	}
+
+	public JPanel getPanelMatriculadas() {
+		if (panelMatriculadas == null) {
+			panelMatriculadas = new JPanel();
+			panelMatriculadas.setLayout(new BoxLayout(panelMatriculadas, BoxLayout.Y_AXIS));
+			
+			panelMatriculadas.add(new JLabel("Matriculadas"));
+			panelMatriculadas.add(getJscrollMatriculadas());
+		}
+		
+		return panelMatriculadas;
 	}
 	
 	
