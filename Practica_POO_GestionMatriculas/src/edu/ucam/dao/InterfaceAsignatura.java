@@ -19,4 +19,6 @@ public interface InterfaceAsignatura {
 	
 	public ArrayList<Asignatura> getOnlyAsignaturas();
 	
+	public double getCreditos();
+	
 }

@@ -59,7 +59,8 @@ public class AsignaturaImplement implements InterfaceAsignatura {
 		
 		return Tablas.getAsignaturas();
 	}
-
+	
+	@Override
 	public ArrayList<Asignatura> getOnlyAsignaturas(){
 		ArrayList<Asignatura> asignaturas = new ArrayList<>();
 		
@@ -70,5 +71,17 @@ public class AsignaturaImplement implements InterfaceAsignatura {
 		}
 		
 		return asignaturas;
+	}
+	
+	@Override
+	public double getCreditos() {
+		double creditos = 0;
+		Enumeration<Asignatura> e = Tablas.getAsignaturas().elements();
+		while (e.hasMoreElements()) {
+			Asignatura asignatura = (Asignatura) e.nextElement();
+			creditos += asignatura.getCreditos();
+		}
+		
+		return creditos;
 	}
 }

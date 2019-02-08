@@ -81,7 +81,11 @@ public class Tablas {
 		asignatura = new AsignaturaImplement();
 		
 		asignatura.addAsignatura(new Asignatura("programacion i", TipoAsignatura.OBLIGATORIA, 3, CursoEscolar.PRIMERO, Semestre.PRIMERO));
-		asignatura.addAsignatura(new Asignatura("dad ii", TipoAsignatura.OBLIGATORIA, 4.5, CursoEscolar.TERCERO, Semestre.SEGUNDO));
+		asignatura.addAsignatura(new Asignatura("dad ii", TipoAsignatura.OBLIGATORIA, 6, CursoEscolar.TERCERO, Semestre.SEGUNDO));
+		asignatura.addAsignatura(new Asignatura("dad i", TipoAsignatura.OBLIGATORIA, 4.5, CursoEscolar.TERCERO, Semestre.PRIMERO));
+		asignatura.addAsignatura(new Asignatura("programacion ii", TipoAsignatura.OBLIGATORIA, 6, CursoEscolar.PRIMERO, Semestre.SEGUNDO));
+		asignatura.addAsignatura(new Asignatura("algoritmia", TipoAsignatura.OBLIGATORIA, 4.5, CursoEscolar.SEGUNDO, Semestre.PRIMERO));
+		asignatura.addAsignatura(new Asignatura("móviles", TipoAsignatura.OBLIGATORIA, 6, CursoEscolar.CUARTO, Semestre.PRIMERO));
 	}
 
 	public static double getCreditosTotales() {

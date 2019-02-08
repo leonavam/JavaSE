@@ -1,0 +1,9 @@
+		INFORME FINAL
+DNI: 000
+Nombre: erik Navarrete
+Dirección: Los angeles 10
+Teléfono: 652708716
+
+*****************************************
+
+AsignaturasNombre	Nota	ConvocatoriaMÓVILES	6.0	FEBREROPROGRAMACION II	8.0	FEBRERODAD II	9.0	FEBREROALGORITMIA	10.0	FEBRERODAD I	6.0	FEBREROPROGRAMACION I	5.0	FEBRERO

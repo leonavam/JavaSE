@@ -53,6 +53,7 @@ public class ActionLogin implements ActionListener {
 				setAlumnoIdentify((Alumno) user);
 				window = new WindowEmpty(new PanelMatricula());
 				window.makeWindow();
+				
 			}else if (user instanceof Administrativo) {
 				window = new WindowEmpty(new PanelAsignatura());
 				window.makeWindow();

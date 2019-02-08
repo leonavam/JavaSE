@@ -17,5 +17,6 @@ public interface InterfaceExpediente {
 	public ArrayList<Asignatura> getAsignaturasMatriculadas(Alumno alumno);
 	
 	public double closeExpediente(String dni);		//calculará su nota final del expediente
+	public double getNotaFinal(Alumno alumno);
 	
 }

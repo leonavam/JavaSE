@@ -1,14 +1,16 @@
 package edu.ucam.ux;
 
-import java.awt.FlowLayout;
+import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Label;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import edu.ucam.enums.CursoEscolar;
@@ -30,16 +32,15 @@ public class PanelAsignatura extends JPanel {
 	private JComboBox<CursoEscolar> cboxCurso;
 	private JComboBox<Semestre> cboxSemestre;
 	private JButton btnAdd, btnborrar;
-	private JPanel panelData, panelBotones;
+	private JPanel panelData, panelBotones, panelCrearAsignatura;
+	private JTabbedPane jtPane;
 
 	public PanelAsignatura() {
-		this.setSize(400, 380);
-		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 25));
-		this.add(getLblTitulo());
-		this.add(getPanelData());
-		this.add(getPanelBotones());
+		this.setSize(500, 400);
+		this.setLayout(new CardLayout());
+		this.add(getJtPane());
+		
 	}
-	
 	
 	// Crea componentes
 
@@ -146,5 +147,30 @@ public class PanelAsignatura extends JPanel {
 		
 		return panelBotones;
 	}
+	
+	public JPanel getPanelCrearAsignatura() {
+		if (panelCrearAsignatura == null) {
+			panelCrearAsignatura = new JPanel();
+			panelCrearAsignatura.setLayout(new BoxLayout(panelCrearAsignatura, BoxLayout.Y_AXIS));
+			
+			panelCrearAsignatura.add(getLblTitulo());
+			panelCrearAsignatura.add(getPanelData());
+			panelCrearAsignatura.add(getPanelBotones());
+			
+		}
+		return panelCrearAsignatura;
+	}
+
+
+	public JTabbedPane getJtPane() {
+		if (jtPane == null) {
+			jtPane = new JTabbedPane();
+			
+			jtPane.add("ASIGNATURA", getPanelCrearAsignatura());
+			jtPane.addTab("ACTAS", new PanelCierreActas());
+		}
+		return jtPane;
+	}
+
 	
 }

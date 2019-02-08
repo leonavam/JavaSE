@@ -1,8 +1,6 @@
 package edu.ucam.dao.implement;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 import edu.ucam.beans.Alumno;
 import edu.ucam.beans.Asignatura;
@@ -46,9 +44,7 @@ public class ExpedienteImplement implements InterfaceExpediente {
 		ArrayList<Asignatura> asignaturas = new ArrayList<>();
 		
 		Expediente expediente = Tablas.getExpedientes().get(alumno.getDni());
-		
 		asignaturas = expediente.getAsignaturas();
-		
 		return asignaturas; 
 	}
 	
@@ -56,14 +52,31 @@ public class ExpedienteImplement implements InterfaceExpediente {
 	public void matricularAsignatura(Alumno alumno, String asignatura) {
 		Expediente expediente = Tablas.getExpedientes().get(alumno.getDni());
 		
-		expediente.getAsignaturas().add(Tablas.getAsignaturas().get(asignatura));
+		expediente.getAsignaturas().add(Tablas.getAsignaturas().get(asignatura));	//Añade una asignatura al array del expediente
 	}
 	
 
 	@Override
 	public double closeExpediente(String dni) {
+		double creditos = 0;
+		Alumno alumno = Tablas.getAlumnos().get(dni);
+		for (Asignatura a: getAsignaturasMatriculadas(alumno)) {
+			if (a.getNota() > 4) {
+				creditos += a.getCreditos();				
+			}
+		}
 		
-		return 0;
+		return creditos;
 	}
 
+	public double getNotaFinal(Alumno alumno) {
+		double nota = 0;
+		Alumno al = Tablas.getAlumnos().get(alumno.getDni());
+		for (Asignatura a: getAsignaturasMatriculadas(al)) {
+			nota += a.getNota();
+		}
+		
+		return nota/Tablas.getAsignaturas().size();
+	}
+	
 }

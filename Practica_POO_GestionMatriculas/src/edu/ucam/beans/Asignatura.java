@@ -1,13 +1,19 @@
 package edu.ucam.beans;
 
 
+import java.io.Serializable;
+
 import edu.ucam.enums.Convocatoria;
 import edu.ucam.enums.CursoEscolar;
 import edu.ucam.enums.Semestre;
 import edu.ucam.enums.TipoAsignatura;
 
-public class Asignatura {
+public class Asignatura implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static int numAsignaturas;
 	private int id;
 	private String name;
@@ -16,7 +22,7 @@ public class Asignatura {
 	private CursoEscolar cursoEscolar;
 	private Semestre semestre;
 	private double nota;
-	private Convocatoria convocatoria;
+	private Convocatoria convocatoria = Convocatoria.FEBRERO;
 	private boolean seHaPresentado = false;
 	
 	private Asignatura() {

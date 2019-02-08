@@ -1,5 +1,8 @@
 package edu.ucam.ux;
 
+
+import java.util.List;
+
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,6 +18,7 @@ import edu.ucam.dao.InterfaceExpediente;
 import edu.ucam.dao.implement.AsignaturaImplement;
 import edu.ucam.dao.implement.ExpedienteImplement;
 import edu.ucam.ux.actions.ActionLogin;
+import edu.ucam.ux.actions.ActionPanelMatricula;
 
 public class PanelMatricula extends JPanel{
 
@@ -62,7 +66,7 @@ public class PanelMatricula extends JPanel{
 
 	public JList<String> getlistAsignaturasMatriculadas() {
 		if (listAsignaturasMatriculadas == null) {
-			listAsignaturasMatriculadas = new JList<>();
+			listAsignaturasMatriculadas = new JList<>(getListMMatriculadas());
 			listAsignaturasDisponibles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			listAsignaturasDisponibles.setVisibleRowCount(8);
 		}
@@ -74,6 +78,8 @@ public class PanelMatricula extends JPanel{
 			btnAddMatricula = new JButton(">>");
 			
 			btnAddMatricula.setActionCommand("addMatricula");
+			
+			btnAddMatricula.addActionListener(new ActionPanelMatricula(this));
 		}
 		return btnAddMatricula;
 	}
@@ -106,11 +112,11 @@ public class PanelMatricula extends JPanel{
 	public DefaultListModel<String> getListMMatriculadas() {
 		if (listMMatriculadas == null) {
 			listMMatriculadas = new DefaultListModel<>();
-		}
-		InterfaceExpediente exp = new ExpedienteImplement();
-
-		for (Asignatura a : exp.getAsignaturasMatriculadas(ActionLogin.getAlumnoIdentify())) {
-			listMMatriculadas.addElement(a.getName());
+			InterfaceExpediente expediente = new ExpedienteImplement();
+			List<Asignatura> list = expediente.getAsignaturasMatriculadas(ActionLogin.getAlumnoIdentify());
+			for (Asignatura a : list) {
+				listMMatriculadas.addElement(a.getName());
+			}
 		}
 		return listMMatriculadas;
 	}
