@@ -91,7 +91,7 @@ public class PanelInformes extends JPanel {
 
 			bw.write(str);
 			bw.write(str2);
-			str = "Nombre\tNota\tConvocatoria";
+			str = "\nNombre\t\t\t\tNota\t\tConvocatoria\n";
 			bw.write(str);
 			
 			for (Asignatura a: expediente.getAsignaturasMatriculadas(alumno)) {
@@ -99,7 +99,7 @@ public class PanelInformes extends JPanel {
 				bw.write(asig);
 			}
 			
-			bw.write("\n\nNota final:" + expediente.getNotaFinal(alumno));
+			bw.write("\n\nNota final: " + expediente.getNotaFinal(alumno));
 			bw.close();
 			fileWriter.close();
 			
