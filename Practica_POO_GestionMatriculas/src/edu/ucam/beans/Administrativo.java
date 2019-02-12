@@ -2,6 +2,10 @@ package edu.ucam.beans;
 
 public class Administrativo extends User {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static int numAdministrativos;
 	private int id;
 	private String password;

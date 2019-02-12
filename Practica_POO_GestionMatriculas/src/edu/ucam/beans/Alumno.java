@@ -2,6 +2,10 @@ package edu.ucam.beans;
 
 public class Alumno extends User {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static int numAlumnos;
 	private int id;
 	
